@@ -1,0 +1,95 @@
+[
+  {
+    "name": "Danny",
+    "email": "danny@gmail.com",
+    "password": 123456,
+    "following":[]  , 
+    "followers":[],
+    "imgIds":[],
+  },
+  {
+    "name": "Masha",
+    "email": "mdf@gmail.com",
+    "password": 123456,
+    "following":[]   ,
+    "followers":[],
+    "imgIds":[]
+  },
+  {
+    "name": "Yossi",
+    "email": "yosi123@gmail.com",
+    "password": 123456,
+    "following":[]   ,
+    "followers":[],
+    "imgIds":[]
+  },
+  {
+    "name": "Mike",
+    "email": "mike@gmail.com",
+    "password": 123456,
+    "following":[]   ,
+    "followers":[],
+    "imgIds":[]
+  },
+  {
+    "name": "Danny",
+    "email": "danny@gmail.com",
+    "password": 123456,
+    "following":[]   ,
+    "followers":[],
+    "imgIds":[]
+  }
+]
+
+
+-----------------
+[
+  {
+    "title":"flowers",
+    "url":"https://res.cloudinary.com/dppogsm2u/image/upload/v1585763607/sample.jpg",
+    "user":""
+  },
+  {
+    "title":"Petra trip",
+    "url":"https://res.cloudinary.com/dppogsm2u/image/upload/v1585763574/petra-4982348_1920_c0icyt.jpg",
+    "user":""
+  }, 
+  {
+    "title":"Ski vication",
+    "url":"https://res.cloudinary.com/dppogsm2u/image/upload/v1585763572/switzerland-4974469_1920_nutefs.jpg",
+    "user":""
+  },  {
+    "title":"Stormy Day",
+    "url":"https://res.cloudinary.com/dppogsm2u/image/upload/v1585763571/landscape-4961094_1920_akowcg.jpg"
+    "user":""
+  }, 
+  {
+    "title":"Beyond Japan",
+    "url":"https://res.cloudinary.com/dppogsm2u/image/upload/v1585763570/clouds-4979558_1920_tcsxfx.jpg",
+    "user":""
+  },  
+  {
+    "title":"Spring is Here!",
+    "url":"https://res.cloudinary.com/dppogsm2u/image/upload/v1585763570/lavender-4976080_1920_b9xqra.jpg",
+    "user":""
+  },  {
+    "title":"Modern Thailand",
+    "url":"https://res.cloudinary.com/dppogsm2u/image/upload/v1585763570/profile-2856561_1920_jfyaul.jpg",
+    "user":""
+  },  
+  {
+    "title":"Baby Bird",
+    "url":"https://res.cloudinary.com/dppogsm2u/image/upload/v1585763567/bird-4393745_1920_vcxlbd.jpg",
+    "user":""
+  },  
+  {
+    "title":"Kitty Kitty Kitty..",
+    "url":"https://res.cloudinary.com/dppogsm2u/image/upload/v1585763566/cat-4977436_1920_v45ogo.jpg",
+    "user":""
+  },  
+  {
+    "title":"We are all going to die!!!",
+    "url":"https://res.cloudinary.com/dppogsm2u/image/upload/v1585763565/corona-4970836_1920_bb5jxd.jpg",
+    "user":""
+  }
+]
