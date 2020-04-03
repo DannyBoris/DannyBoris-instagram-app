@@ -39,7 +39,7 @@ renderUser = () =>this.state.userById ? (<h1>User by id name: {this.state.userBy
    }
 
     getUserByIdWithImages  = async id => {
-    let res = await axios.get(`http://localhost:3003/api/users/${id}/followers`) 
+    let res = await axios.get(`http://localhost:3003/api/users/${id}/images`) 
     let data = res.data
     
       
@@ -65,6 +65,7 @@ renderUser = () =>this.state.userById ? (<h1>User by id name: {this.state.userBy
               updateLoggedUser={this.updateLoggedUser}
               currUser={this.state.currLoggedInUser}/> }/>
         </Switch>
+        <button onClick={()=>this.getUserByIdWithImages('5e86216947d8db4d9880ba9b')}>CLICKME</button>
       </div>
       </Router>
      );

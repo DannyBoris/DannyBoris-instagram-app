@@ -17,19 +17,26 @@ const getById = async id =>{
 
 const getByIdWithImages = async id =>{
     await dbConn()
+    let res = await User.findById(mongoose.Types.ObjectId(id))
     User.aggregate([
+        {
+            $match:{
+                name:'Masha'
+            }
+        },
+    
         {$lookup:{
             from:'images',
             localField:'imgIds',
             foreignField:'_id',
-            as:'Objs'
+            as:'Objjjj'
         }}
-    ],(err,res)=>console.log(typeof res[0].imgIds[0]))
+    ],(err,res)=>console.log(res))
+
 }
 
 const getByIdWithFollowers= async id =>{
     await dbConn()
-    
     return User.aggregate([
         {$match:{_id: mongoose.Types.ObjectId(id)}},
         {$lookup:{

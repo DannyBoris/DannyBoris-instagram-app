@@ -32,10 +32,11 @@ app.post('/api/signup', async (req,res)=>{
 
 app.post('/api/login', async (req, res) => {
     let loginUser = await userRoute.authUser(req.body)
-    jwt.sign({user:{id:loginUser._id}},'SecretK',(err,token)=>{
-       res.json(token)
+   if(loginUser) jwt.sign({user:{id:loginUser._id}},'SecretK',(err,token)=>{
+        res.json(token)
     })
-    
+    else
+    res.json({msg:'Wrong name or password please try again', code:404})
 });
 
 app.get('/api/users/:id/images', async (req,res)=>{
