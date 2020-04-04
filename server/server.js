@@ -1,24 +1,26 @@
 //require libraries
 const express  = require('express')
-const app = express()
 const cors = require('cors')
 const bodyPraser = require('body-parser')
 const cookieParser = require('cookie-parser')
-
-//require routes
 const authRoutes = require('./routes/auth.routes')
 const userRoutes = require('./routes/auth.routes')
+const app = express()
 
 //Use Middleware and routes 
 app.use(cors());
 app.use(bodyPraser.json())
 app.use(cookieParser())
+app.use('/api/users',authRoutes(app))
+
+//require routes
+
+
 authRoutes(app)
 userRoutes(app)
 
 //Dummy route for main page of server
 app.get('/',(req,res)=>{
-    console.log('running')
     res.send('Welcome to the SERVER!');
 })
 
@@ -29,3 +31,4 @@ const PORT = process.env.PORT || 3003
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
 });
+

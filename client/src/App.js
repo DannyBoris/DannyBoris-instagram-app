@@ -2,14 +2,14 @@ import React , {Component} from 'react';
 import Header from './components/Header/Header'
 import './App.css';
 import axios from 'axios'
-import {observer, inject} from 'mobx-react'
 import Form from './components/Form/Form'
 import {  Switch, Route } from 'react-router'
 import {BrowserRouter as Router} from 'react-router-dom'
 import Profile from './components/Profile/Profile'
+import AuthContextProvider from './contexts/AuthContext'
 
-@inject('UserStore')
-@observer
+
+
 class App extends Component {
   
 async componentDidMount (){
@@ -54,9 +54,9 @@ renderUser = () =>this.state.userById ? (<h1>User by id name: {this.state.userBy
   render() { 
 
     return ( 
-      
-      <Router>
+      <AuthContextProvider>
       <div className="App">
+             <Router>
       <Header/>
         <Switch>
         <Route path='/profile' render={(props)=> <Profile 
@@ -66,8 +66,10 @@ renderUser = () =>this.state.userById ? (<h1>User by id name: {this.state.userBy
               currUser={this.state.currLoggedInUser}/> }/>
         </Switch>
         <button onClick={()=>this.getUserByIdWithImages('5e86216947d8db4d9880ba9b')}>CLICKME</button>
-      </div>
       </Router>
+      </div>
+      </AuthContextProvider>
+ 
      );
   }
 }
