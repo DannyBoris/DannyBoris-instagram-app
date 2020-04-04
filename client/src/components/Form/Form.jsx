@@ -51,6 +51,7 @@ class Form extends Component {
         let data = res.data
         console.log(data)
         if(data){
+            console.log(data)
             localStorage.setItem('token',data)
             this.props.updateLoggedUser(name)
         }

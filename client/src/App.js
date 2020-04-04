@@ -27,7 +27,7 @@ renderUser = () =>this.state.userById ? (<h1>User by id name: {this.state.userBy
   state = { 
     users:[],
     userById:null,
-    currLoggedInUser:null
+    currLoggedInUser:'Josh'
    }
    async getUserById(id) {
     let res = await axios.get(`http://localhost:3003/api/users/${id}`) 
@@ -57,10 +57,10 @@ renderUser = () =>this.state.userById ? (<h1>User by id name: {this.state.userBy
       
       <Router>
       <div className="App">
-          <h1>{this.state.currLoggedInUser}</h1>
       <Header/>
         <Switch>
-            <Route path='/profile' component={Profile}/>
+        <Route path='/profile' render={(props)=> <Profile 
+              currUser={this.state.currLoggedInUser}/> }/>
             <Route path='/form' render={(props)=> <Form 
               updateLoggedUser={this.updateLoggedUser}
               currUser={this.state.currLoggedInUser}/> }/>
