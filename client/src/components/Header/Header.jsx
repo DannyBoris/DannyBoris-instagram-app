@@ -16,7 +16,11 @@ const Header = () => {
                 <li><a href="#"></a><img src="https://img.icons8.com/android/24/000000/new-message.png"/></li>
                 <li><a href="#"><img src="https://img.icons8.com/android/24/000000/compass.png"/></a></li>
                 <li><a href="#"></a><img src="https://img.icons8.com/pastel-glyph/24/000000/hearts.png"/></li>
-                <li><Link to="/profile"><img className="profile-img" src={profileThumb} alt=""/></Link></li>
+                <li className="register-section">
+                    <button className="login-btn btn">Login</button>
+                    <button className="signup-btn btn">SignUp</button>
+                </li>
+                {/* <li><Link to="/form"><img className="profile-img" src={profileThumb} alt=""/></Link></li> */}
             </ul>
         </div>
      );

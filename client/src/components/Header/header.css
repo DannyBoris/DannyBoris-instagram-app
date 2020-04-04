@@ -1,12 +1,53 @@
+*{
+    box-sizing: border-box;
+
+}
+:root{
+    --border-rad: 6px
+}
+
 .header{
     display:flex;
     align-items:center;
     justify-content: space-between;
-    border-bottom: 2px solid black;
     padding:.3em 4em;
+    position: fixed;
+    background:rgba(255,255,255,.8);
+    width:100%;
+    top:0;
 
 }
+.register-section .btn{
+    font-weight: 600;
+    font-size:1.1em;
+    border-top:var(--border-rad) solid black;
+    border-bottom:var(--border-rad) solid black;
+    border-left:none;
+    border-right:none;
+    padding:20px;
+    background:none;
+}
+.register-section .login-btn{
+    border-left:var(--border-rad) solid black;
+    position: relative;
 
+}
+.register-section .signup-btn{
+    border-right:var(--border-rad) solid black
+
+}
+.register-section .login-btn::after{
+    content:'';
+    height:150%;
+    transform:rotate(-15deg);
+    border-radius: 40px;;
+    top:-15px;
+    left:100%;
+    position: absolute;
+    background:black;
+    width:var(--border-rad);
+
+}
 .links{
     align-items:center;
 

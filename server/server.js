@@ -3,21 +3,20 @@ const express  = require('express')
 const cors = require('cors')
 const bodyPraser = require('body-parser')
 const cookieParser = require('cookie-parser')
-const authRoutes = require('./routes/auth.routes')
-const userRoutes = require('./routes/auth.routes')
 const app = express()
+app.use(cors());
+require('./routes/auth.routes')(app)
+require('./routes/user.routes')(app)
+require('./routes/image.routes')(app)
 
 //Use Middleware and routes 
-app.use(cors());
 app.use(bodyPraser.json())
 app.use(cookieParser())
-app.use('/api/users',authRoutes(app))
 
 //require routes
 
 
-authRoutes(app)
-userRoutes(app)
+
 
 //Dummy route for main page of server
 app.get('/',(req,res)=>{

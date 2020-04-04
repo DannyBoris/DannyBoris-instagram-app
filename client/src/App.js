@@ -1,12 +1,15 @@
 import React , {Component} from 'react';
 import Header from './components/Header/Header'
 import './App.css';
+import './helpers.css'
 import axios from 'axios'
 import Form from './components/Form/Form'
 import {  Switch, Route } from 'react-router'
 import {BrowserRouter as Router} from 'react-router-dom'
 import Profile from './components/Profile/Profile'
 import AuthContextProvider from './contexts/AuthContext'
+import Home from './components/Home/Home';
+import ImageContextProvider from './contexts/ImageContext';
 
 
 
@@ -20,7 +23,7 @@ async componentDidMount (){
     users:data
   })
 }
- 
+ Auth
 renderUser = () =>this.state.userById ? (<h1>User by id name: {this.state.userById.name}</h1>) : null
 
 
@@ -54,27 +57,31 @@ renderUser = () =>this.state.userById ? (<h1>User by id name: {this.state.userBy
   render() { 
 
     return ( 
-      <AuthContextProvider>
       <div className="App">
-             <Router>
+    <Router>
       <Header/>
+      <ImageContextProvider>
+      <AuthContextProvider>
         <Switch>
-        <Route path='/profile' render={(props)=> <Profile 
-              currUser={this.state.currLoggedInUser}/> }/>
-            <Route path='/form' render={(props)=> <Form 
-              updateLoggedUser={this.updateLoggedUser}
-              currUser={this.state.currLoggedInUser}/> }/>
+          <Route exact path='/' component={Home}/>
+          <Route path='/profile' render={(props)=> 
+            <Profile currUser={this.state.currLoggedInUser}/>}/>
+          <Route path='/form' render={(props)=>
+            <Form 
+                updateLoggedUser={this.updateLoggedUser}
+                currUser={this.state.currLoggedInUser}/> }/>
         </Switch>
         <button onClick={()=>this.getUserByIdWithImages('5e86216947d8db4d9880ba9b')}>CLICKME</button>
-      </Router>
-      </div>
       </AuthContextProvider>
+      </ImageContextProvider>
+    </Router>
+ 
+      </div>
  
      );
   }
 }
 
-/** */
 
 
 export default App;

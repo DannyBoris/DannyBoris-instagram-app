@@ -1,6 +1,7 @@
 
 const connectMongoDB = require('../mongoose.connect')
-
+const mongoose = require('mongoose')
+const User = require('../models/User')
 
 const query = async () =>{
     await connectMongoDB()
@@ -20,7 +21,6 @@ const getByIdWithImages = async id =>{
                 _id:mongoose.Types.ObjectId(id)
             }
         },
-    
         {
             $lookup:{
             from:'images',

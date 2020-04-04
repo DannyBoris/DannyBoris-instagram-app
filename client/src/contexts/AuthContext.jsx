@@ -1,16 +1,21 @@
 import React, { createContext, Component } from 'react';
 
-const AuthConext = createContext()
+export const AuthContext = createContext()
 
 class AuthContextProvider extends Component {
     state = { 
-        currUser:null
+        currUser:'boris'
+     }
+     updateActiveUser = (user) => {
+        this.setState({
+            currUser:user
+        })
      }
     render() { 
         return ( 
-           <AuthConext.Provider value={this.state.currUser}>
+           <AuthContext.Provider value={{...this.state, updateActiveUser: this.updateActiveUser} }>
                {this.props.children}
-           </AuthConext.Provider>
+           </AuthContext.Provider>
          );
     }
 }
