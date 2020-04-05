@@ -10,13 +10,14 @@ import Profile from './components/Profile/Profile'
 import AuthContextProvider from './contexts/AuthContext'
 import Home from './components/Home/Home';
 import ImageContextProvider from './contexts/ImageContext';
+import FormContextProvider from './contexts/FormContext';
 
 
 
 class App extends Component {
   
 async componentDidMount (){
-
+ 
   let res = await axios.get('http://localhost:3003/api/users')      
   let data = res.data
   this.setState({
@@ -28,9 +29,14 @@ renderUser = () =>this.state.userById ? (<h1>User by id name: {this.state.userBy
 
 
   state = { 
+    activeBlackScreen:false,
     users:[],
     userById:null,
-    currLoggedInUser:'Josh'
+    currLoggedInUser:'Josh',
+    form:{
+      show:false,
+      type:null
+    }
    }
    async getUserById(id) {
     let res = await axios.get(`http://localhost:3003/api/users/${id}`) 
@@ -39,6 +45,17 @@ renderUser = () =>this.state.userById ? (<h1>User by id name: {this.state.userBy
       userById: data
     })
 
+   }
+   activateBlackScreen = ()=>{
+     this.setState({
+       activeBlackScreen: !this.state.activeBlackScreen
+     })
+   }
+   showForm = (type) =>{
+     this.setState({
+       showForm: !this.state.showForm,
+       type
+     })
    }
 
     getUserByIdWithImages  = async id => {
@@ -58,22 +75,21 @@ renderUser = () =>this.state.userById ? (<h1>User by id name: {this.state.userBy
 
     return ( 
       <div className="App">
+     {this.state.activeBlackScreen ?  <div className="black-screen"></div> : ''}
     <Router>
-      <Header/>
+      <FormContextProvider>
+
       <ImageContextProvider>
       <AuthContextProvider>
+      <Header activateBlackScreen={this.activateBlackScreen}/>
         <Switch>
           <Route exact path='/' component={Home}/>
-          <Route path='/profile' render={(props)=> 
-            <Profile currUser={this.state.currLoggedInUser}/>}/>
-          <Route path='/form' render={(props)=>
-            <Form 
-                updateLoggedUser={this.updateLoggedUser}
-                currUser={this.state.currLoggedInUser}/> }/>
+          <Route path='/profile' component={Profile}/> 
         </Switch>
-        <button onClick={()=>this.getUserByIdWithImages('5e86216947d8db4d9880ba9b')}>CLICKME</button>
+        <Form activateBlackScreen={this.activateBlackScreen} /> 
       </AuthContextProvider>
       </ImageContextProvider>
+      </FormContextProvider>
     </Router>
  
       </div>

@@ -9,17 +9,19 @@ const add = async newUser =>{
     
     let userToAdd = new User({...newUser})
     let {password} = userToAdd
+    console.log(password)
     let hashedPassword = bcrypt.hashSync(password,10)
-    newUser.password = hashedPassword
+    userToAdd.password = hashedPassword
     // let x = bcrypt.compareSync(password, hashedPassword) //TODO
     try{
         let res = await userToAdd.save()
-        return res
+        return {msg:'User added!', code:201}
 
     }catch(e){
         let errorObj = e.code === 11000 ? 
         {msg:'User already exists. Please try a diffreent email/name',code:400} : 
-        {msg:'Unknown error',code:500}           
+        {msg:'Unknown error',code:500}  
+        console.log(e)         
         return errorObj;
     }
 }

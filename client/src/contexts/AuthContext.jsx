@@ -4,12 +4,13 @@ export const AuthContext = createContext()
 
 class AuthContextProvider extends Component {
     state = { 
-        currUser:'boris'
+        currActiveUser:null
      }
      updateActiveUser = (user) => {
         this.setState({
-            currUser:user
+            currActiveUser:user
         })
+        console.log(this.state.currActiveUser)
      }
     render() { 
         return ( 

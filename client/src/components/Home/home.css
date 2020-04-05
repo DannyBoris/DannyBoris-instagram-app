@@ -1,0 +1,26 @@
+.main-container{
+    max-height: 100vh;
+    display:flex;
+    align-items: center;
+}
+.title-container{
+    flex-basis: 50%;
+
+
+}
+.title-container > .title{
+    font-size:5em;
+}
+
+.image-collection-container{
+}
+.collection{
+    display:grid;
+    max-width:100%;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.collection > img {
+    max-width: 100%;
+    height: auto;
+}
