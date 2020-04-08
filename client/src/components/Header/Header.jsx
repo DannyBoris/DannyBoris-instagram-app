@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, Fragment } from 'react';
 import Logo from './main-logo.png'
-import { Link } from 'react-router-dom'
+import { Link, useHistory, Redirect } from 'react-router-dom'
 
 import '../../helpers.css'
 import './header.css'
@@ -9,6 +9,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 
 
 const Header = (props) => {
+    let history = useHistory()
     const log = (e) =>{
         
         let type = e.target.id
@@ -25,31 +26,32 @@ const Header = (props) => {
         else{
             toggleFormType(type)
         }
-
-    
-
     }
-    console.log(props.location)
+
+    const  dispatchLogout = async () =>{
+        let res = await logout()
+        localStorage.clear()
+    }
     const  {formType, showForm, toggleShowForm,toggleFormType}  = useContext(FormContext)
-    const {currActiveUser}   = useContext(AuthContext)
+    const {currActiveUser ,logout}   = useContext(AuthContext)
     console.log('from header',currActiveUser)
-    return ( 
+    return   ( 
         <div className="header flex align-center">
 
             <div className="logo">
                <img src={Logo} alt=""/>
             </div>
             <ul className="links flex">
-                <li><a href="#"> <img alt="" src="https://img.icons8.com/material-rounded/24/000000/home.png"/></a></li>
-                <li><a href="#"></a><img alt="" src="https://img.icons8.com/android/24/000000/new-message.png"/></li>
-                <li><a href="#"><img alt="" src="https://img.icons8.com/android/24/000000/compass.png"/></a></li>
-                <li><a href="#"></a><img alt="" src="https://img.icons8.com/pastel-glyph/24/000000/hearts.png"/></li>
+
                 {!currActiveUser ?
                   <li className="register-section">
                     <button id="login" onClick={log} className="login-btn btn">Login</button>
                     <button id="signup" onClick={log} className="signup-btn btn">SignUp</button>
                 </li> :  
-                <Link to={`/profile/${currActiveUser.user.name}`}>Welcome {currActiveUser.user.name}</Link>}
+                <Fragment>
+                    <Link to={`/profile/${currActiveUser}`}>Welcome {currActiveUser.name}</Link>
+                    <button onClick={dispatchLogout} className="btn logout-btn">Logout</button>
+                </Fragment>}   
             </ul>
         </div>
      );

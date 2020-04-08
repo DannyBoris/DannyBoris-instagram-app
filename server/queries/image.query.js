@@ -8,6 +8,7 @@ const query = async () =>{
 }
 
 const queryHomeUrls = async ()=>{
+    console.log('db')
     await connectMongoDB()
     return Image.aggregate([
         {
@@ -15,7 +16,7 @@ const queryHomeUrls = async ()=>{
             
         },
         {
-            $limit:9
+            $sample:{size:5}
         }
     ],(err,res)=>err ? err : res)
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {ImageContext} from '../../contexts/ImageContext'
+import male from '../../male.jpg'
 import './home.css'
 class Home extends Component {
     
@@ -23,7 +24,7 @@ class Home extends Component {
       
     }
    showImages=(imgs)=>{
-    return imgs.map(img=><img key={img._id} className="collection-img" src={img.url} alt="x"/>)
+    return imgs.map((img,i)=><img key={img._id} className={`collection-img img-${i}`} src={img.url} alt="x"/>)
 
    }
         
@@ -38,12 +39,12 @@ class Home extends Component {
             <div className="home">
                 <div className={`main-container `}>
                 <div className="title-container">
-        <h1 className="title">One Photo Worth <span onClick={this.startCounter} className="counter">{this.state.counter}</span> Words.</h1>
+                     <h1 className="title">One Photo Worth <span onClick={this.startCounter} className="counter">{this.state.counter}</span> Words.</h1>
                 </div>
-                <div className="image-collection-container">
                 <div  className= "collection" >
-                    {this.showImages(this.state.imgsToRender)}
-                </div>
+                    {/* {this.showImages(this.state.imgsToRender)} */}
+                    <img className="img female" src='https://res.cloudinary.com/dppogsm2u/image/upload/v1586074482/home-bg_qvw3vj.jpg' alt=""/>
+                    <img className="img male" src={male} alt=""/>
                 </div>
                 </div>
              

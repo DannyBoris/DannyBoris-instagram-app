@@ -12,10 +12,6 @@ require('./routes/auth.routes')(app)
 require('./routes/user.routes')(app)
 require('./routes/image.routes')(app)
 
-
-
-//require routes
-
 //Dummy route for main page of server
 app.get('/',(req,res)=>{
     res.send('Welcome to the SERVER!');

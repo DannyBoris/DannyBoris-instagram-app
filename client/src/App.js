@@ -5,7 +5,6 @@ import './helpers.css'
 import axios from 'axios'
 import Form from './components/Form/Form'
 import {  Switch, Route } from 'react-router'
-import {BrowserRouter as Router} from 'react-router-dom'
 import Profile from './components/Profile/Profile'
 import AuthContextProvider from './contexts/AuthContext'
 import Home from './components/Home/Home';
@@ -64,33 +63,25 @@ renderUser = () =>this.state.userById ? (<h1>User by id name: {this.state.userBy
     
       
     }
-
-    updateLoggedUser = (loggedUser) =>{
-      console.log('This is a call from the child compoentns: ' + loggedUser)
-      this.setState({
-        currLoggedInUser:loggedUser
-      })
-  }
   render() { 
 
     return ( 
       <div className="App">
      {this.state.activeBlackScreen ?  <div className="black-screen"></div> : ''}
-    <Router>
       <FormContextProvider>
 
       <ImageContextProvider>
       <AuthContextProvider>
-      <Header activateBlackScreen={this.activateBlackScreen}/>
+          <Header  activateBlackScreen={this.activateBlackScreen}/>
         <Switch>
           <Route exact path='/' component={Home}/>
-          <Route path='/profile' component={Profile}/> 
+          <Route exact path='/profile' component={Profile}/> 
         </Switch>
         <Form activateBlackScreen={this.activateBlackScreen} /> 
       </AuthContextProvider>
       </ImageContextProvider>
       </FormContextProvider>
-    </Router>
+
  
       </div>
  

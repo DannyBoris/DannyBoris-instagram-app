@@ -33,11 +33,37 @@ const getByIdWithImages = async id =>{
 
 }
 
-const getByIdWithFollowers= async id =>{
+const getByIdWithFollowing= async id =>{ // TODO: undetstand this  query better!
     await connectMongoDB()
-    User.aggregate([
-        {$match:{_id:id}}
-    ],(err,res)=>console.log(res))
+    return await  User.aggregate([
+        {
+            "$match":{
+                _id:mongoose.Types.ObjectId(id)
+
+            },
+        },
+        { "$lookup": {
+          "from": 'users',
+          "let": { "following": "$following" },
+          "pipeline": [
+             { "$match": { "$expr": { "$in": [ "$_id", "$$following" ] } } },
+             { "$lookup": {
+               "from": 'images',
+               "let": { "imgIds": "$imgIds" },
+               "pipeline": [
+                 { "$match": { "$expr": { "$in": [ "$_id", "$$imgIds" ] } } }
+               ],
+               "as": "imgObjs"
+             }}
+           ],
+           "as": "followerObjs"
+        }},{
+            $project:{
+               followerObjs:1,
+               _id:0
+            }
+        }
+       ],(err,res)=>console.log(res))
 }
 
 
@@ -46,6 +72,6 @@ module.exports = {
     query,
     getById,
     getByIdWithImages,
-    getByIdWithFollowers,
+    getByIdWithFollowing,
    
 }

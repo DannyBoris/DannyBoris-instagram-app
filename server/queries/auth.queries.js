@@ -26,6 +26,7 @@ const add = async newUser =>{
     }
 }
 
+
 const authLogin = async user =>{
     await connectMongoDB()
     let userInDB = null

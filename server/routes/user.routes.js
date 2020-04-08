@@ -22,13 +22,15 @@ app.get('/api/users/:id', async (req,res)=>{
 app.get('/api/users/:id/images', async (req,res)=>{
 let { id } = req.params
 let user = await userQuery.getByIdWithImages(id)
+res.send(user)
 // res.status(200).json(user) 
 })
 
 //Get user with follewers
-app.get('/api/users/:id/followers', middleWare.verifyToken , async (req,res)=>{
-    let { id } = req.token.user
-    let user = await userQuery.getByIdWithFollowers(id)
-    // res.status(200).json(user) 
+app.get('/api/users/:id/following' , async (req,res)=>{
+    //req.token.user ||
+    let { id } =  req.params
+    let user = await userQuery.getByIdWithFollowing(id)
+    res.status(200).json(user) 
 })
 }
